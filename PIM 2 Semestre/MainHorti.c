@@ -14,86 +14,96 @@ GRUPO : G870344 - ANDRÉ LUIZ PEREIRA DA COSTA
 #include <string.h>                             
 #include <locale.h>
 
-int main (void) {
-    setlocale(LC_ALL, "Portuguese");            
-    char login[50], loginGerente[10] = "Gerente", loginAtendente[10] = "Atendente"; 
-    int password,formaVenda;
+int main(void) {
+    setlocale(LC_ALL, "Portuguese");
+    char login[30], loginRegistrado[30] = "login";
+    char senha[30], senhaRegistrado[30] = "senha";
 
     printf("------HORTIFRUTI------ \n");
     printf("--------ENTRAR-------- \n\n");
 
     printf("Insira o seu login: \n");
-    scanf_s("%49[^\n]s", login);
+    scanf_s("%s", login);
     fflush(stdin);
-    
-    if (strcmp(login, loginGerente) == 0 || strcmp(login, loginAtendente) == 0) {
-        printf("Deu certo \n");
-    }
-    else {
-        printf("Deu errado \n");
-    }
-    /*
-    printf ("Insira a sua senha: \n");
-    scanf_s("%d", &password);
 
-    if (login == loginGerente && password == 1) {
-        printf("Bem vindo gerente, escolha a operação\n");
-    }
-    else {
-        printf("Bem vindo atendente, escolha a operação\n");
-    }
+    printf("Insira a sua senha: \n");
+    scanf_s("%s", senha);
+    fflush(stdin);
 
-    /*
-    if (login == 1 && password == 1) {
-        printf("Insira a forma de venda: \n");
-        scanf_s("%d", &formaVenda);
+    if (strcmp(login, loginRegistrado) == 0 && strcmp(senha, senhaRegistrado) == 0) {
+        system("cls");
+        int opcaoVenda;
+        printf("Escolha a opção de venda: \n");
+        printf("[Digite 1] Código do produto\n");
+        printf("[Digite 2] Peso do produto\n");
+        printf("[Digite 3] Encerrar Programa\n");
+        scanf_s("%d", &opcaoVenda);
 
-        if (formaVenda = 1) {
-            float valor, pagamento, total, troco, qtd;
-
+        switch (opcaoVenda) {
+        case 1 :
+            printf("--------ESTAÇÃO DE VENDA-------- \n\n");
+            int valor, qtd, total, pagamento, troco;
             printf("Valor do produto: \n");
-            scanf_s("%f", &valor);
+            scanf_s("%d", &valor);
             printf("Quantidade: \n");
-            scanf_s("%f", &qtd);
-            printf("Pagamento recebido: \n");
-            scanf_s("%f", &pagamento);
-
+            scanf_s("%d", &qtd);
             total = valor * qtd;
-            printf("Total: %f \n", &total);
-
-            if (pagamento < valor * qtd) {
-                printf("Compra recusada \n");
-            }
-            else {
-                troco = pagamento - valor * qtd;
-                printf("Troco: %f \n", &troco);
-            }
-        }
-        else {
-            float valorkg, peso, pagamentokg;
-
-            printf("Valor do produto por quilo: \n");
-            scanf_s("%f", &valorkg);
-            printf("Peso: \n");
-            scanf_s("%f", &peso);
             printf("Pagamento recebido: \n");
-            scanf_s("%f", &pagamentokg);
+            scanf_s("%d", &pagamento);
+            printf("Total: %d \n", total);
 
-            printf("Total: \n", valorkg * peso);
-
-            if (pagamentokg < valorkg * peso) {
+            if (pagamento < total) {
                 printf("Compra recusada \n");
             }
             else {
-                printf("Troco: \n", pagamentokg - valorkg * peso);
+                troco = pagamento - total;
+                printf("Troco: %d \n", troco);
             }
+            break;
+
+        case 2 :
+            printf("--------ESTAÇÃO DE PESO-------- \n\n");
+            int valorkg, peso, pagamentokg, totalkg, trocokg;
+            printf("Valor do produto por quilo: \n");
+            scanf_s("%d", &valorkg);
+            printf("Peso: \n");
+            scanf_s("%d", &peso);
+            totalkg = valorkg * peso;
+            printf("Pagamento recebido: \n");
+            scanf_s("%d", &pagamentokg);
+
+            printf("Total: %d \n", totalkg);
+
+            if (pagamentokg < totalkg) {
+                printf("Compra recusada \n");
+            }
+            else {
+                trocokg = pagamentokg - totalkg;
+                printf("Troco: %d \n", trocokg);
+            }
+            break;
+        default:
+            printf("APERTE ENTER PARA ENCERRAR O PROGRAMA\n\n");
         }
     }
     else {
-        printf("Permisao não concedida \n");
+        system("cls");
+        printf("login não realizado\n");
     }
-    */
 
-    system ("pause");
+    system("pause");
     return 0;
 }
+
+// TAREFAS
+// PONTO EXTRA: Conexão com o banco de dados MySQL.
+// PONTO EXTRA: Criação de biblioteca.
+// RF1. Função para que usuário adiciona mais de um produto no ato de venda.
+// RF2. Uso de structs para os produtos
+// RF3. Função para que o usuario gerente possa adicionar produtos
+// RF4. Função para que o usuario possa transitar entre as telas (botão para voltar e sair)
+// RF5. Função de cadastro para funcionários (registro em text ou mysql) 
+// RF6. Sistema conceitual de cartão de crédito (dinheiro fisico aprova a compra apenas se o valor for igual ou maior aos produtos, crédito aprova a compra automaticamente após digitar uma senha, débito repete a operação do dinheiro fisico após inserir uma senha)
+// RF7. Histórico de operação (sei lá como fazer)
+//
+// alterações devem ser levantados no github apenas quando forem feitas, caso contrário copiem o código e operem no offline até tiverem sucesso.
