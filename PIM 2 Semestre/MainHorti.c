@@ -95,15 +95,25 @@ int main(void) {
     return 0;
 }
 
-// TAREFAS
-// PONTO EXTRA: Conexão com o banco de dados MySQL.
-// PONTO EXTRA: Criação de biblioteca.
-// RF1. Função para que usuário adiciona mais de um produto no ato de venda.
-// RF2. Uso de structs para os produtos
-// RF3. Função para que o usuario gerente possa adicionar produtos
-// RF4. Função para que o usuario possa transitar entre as telas (botão para voltar e sair)
-// RF5. Função de cadastro para funcionários (registro em text ou mysql) 
-// RF6. Sistema conceitual de cartão de crédito (dinheiro fisico aprova a compra apenas se o valor for igual ou maior aos produtos, crédito aprova a compra automaticamente após digitar uma senha, débito repete a operação do dinheiro fisico após inserir uma senha)
-// RF7. Histórico de operação (sei lá como fazer)
-//
-// alterações devem ser levantados no github apenas quando forem feitas, caso contrário copiem o código e operem no offline até tiverem sucesso.
+/*
+TAREFAS
+PONTO EXTRA: Conexão com o banco de dados MySQL.
+PONTO EXTRA: Criação de biblioteca.
+RF1. Função para que usuário adiciona mais de um produto no ato de venda.
+RF2. Uso de structs para os produtos
+RF3. Função para que o usuario gerente possa adicionar produtos
+RF4. Função para que o usuario possa transitar entre as telas (botão para voltar e sair)
+RF5. Função de cadastro para funcionários (registro em text ou mysql) 
+RF6. Sistema conceitual de cartão de crédito (dinheiro fisico aprova a compra apenas se o valor for igual ou maior aos produtos, crédito aprova a compra automaticamente após digitar uma senha, débito repete a operação do dinheiro fisico após inserir uma senha)
+RF7. Histórico de operação (sei lá como fazer)
+alterações devem ser levantados no github apenas quando forem feitas, caso contrário copiem o código e operem no offline até tiverem sucesso.
+
+DICIONÁRIO
+#include <string.h> - Serve para usar strings (palavras) no programa
+char login[30], loginRegistrado[30] = "login"; - Estabele uma palavra "login" para ser comparado com a entrada do usuário
+scanf_s("%s", login); - %s serve para ler string
+fflush(stdin); - limpa as informações inseridos na string
+if (strcmp(login, loginRegistrado) == 0 && strcmp(senha, senhaRegistrado) == 0) { - strcmp compara duas strings, se elas forem iguais (0) o programa fará o próximo strcmp e se for 0 também efetuará o comando if
+system("cls"); - limpa a tela de informação
+switch (opcaoVenda) { - serve para o usuario escolher entre diversas opções
+*/
