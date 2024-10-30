@@ -19,14 +19,21 @@ typedef struct {
     int valorProd;
 }Produto;
 
+typedef struct {
+    char* nomeProdkg; //nome precisa ser indicado como ponteiro no visual studio mas pode ser alterado como strcpy em outras IDE's
+    int valorProdkg;
+}Produtokg;
+
+int codigoRet, statusMenu;
+
 int main(void) {
     setlocale(LC_ALL, "Portuguese");
     char login[30], loginRegistrado[30] = "login";
     char senha[30], senhaRegistrada[30] = "senha";
-    int status;
-
+    int status = 0;
+    
     Produto item[10];
-
+    // PRODUTOS VENDIDOS POR CÓDIGO
     item[0].nomeProd = "LEITE";
     item[0].valorProd = 5;
     item[1].nomeProd = "OVOS";
@@ -38,40 +45,56 @@ int main(void) {
     item[4].nomeProd = "FARINHA";
     item[4].valorProd = 10;
 
-    printf("%s/n%d/n", item[0].nomeProd, item[0].valorProd);
+    Produtokg itemkg[10];
+    // PRODUTOS VENDIDOS POR PESO
+    itemkg[0].nomeProdkg = "MUSSARELA";
+    itemkg[0].valorProdkg = 40;
+    itemkg[1].nomeProdkg = "CENOURA";
+    itemkg[1].valorProdkg = 2;
+    itemkg[2].nomeProdkg = "LINGUIÇA";
+    itemkg[2].valorProdkg = 35;
+    itemkg[3].nomeProdkg = "FILÉ DE FRANGO";
+    itemkg[3].valorProdkg = 20;
+    itemkg[4].nomeProdkg = "LIMÃO";
+    itemkg[4].valorProdkg = 10;
 
     do {
         system("cls");
         printf("------HORTIFRUTI------ \n");
         printf("--------ENTRAR-------- \n\n");
         status = 0;
-        printf("INSIRA O SEU LOGIN:");
+        printf("INSIRA O SEU LOGIN: ");
         fflush(stdin);
         scanf_s("%s", login);
         if (strcmp(loginRegistrado, login)!=0){
             printf("LOGIN ERRADO!");
             status++;
         } else {
-            printf("INSIRA A SUA SENHA:");
+            printf("INSIRA A SUA SENHA: ");
             fflush(stdin);
             scanf_s("%s", senha);
             if (strcmp(senhaRegistrada, senha)!=0) {
                 printf("SENHA ERRADA!");
                 status++;
+            } else {
+                void menu();
             }
         }
     } while (status != 0);
 
+    do {
         system("cls");
         int opcaoVenda;
         printf("Escolha a opção de venda: \n");
         printf("[Digite 1] Código do produto\n");
         printf("[Digite 2] Peso do produto\n");
-        printf("[Digite 3] Encerrar Programa\n");
+        printf("[Digite 3] Acessar estoque\n");
+        printf("[Digite 4] Encerrar Programa\n");
         scanf_s("%d", &opcaoVenda);
 
         switch (opcaoVenda) {
-        case 1 :
+        case 1:
+            system("cls");
             printf("--------ESTAÇÃO DE VENDA-------- \n\n");
             int valor, qtd, total, pagamento, troco;
             printf("Valor do produto: \n");
@@ -92,7 +115,8 @@ int main(void) {
             }
             break;
 
-        case 2 :
+        case 2:
+            system("cls");
             printf("--------ESTAÇÃO DE PESO-------- \n\n");
             int valorkg, peso, pagamentokg, totalkg, trocokg;
             printf("Valor do produto por quilo: \n");
@@ -113,9 +137,36 @@ int main(void) {
                 printf("Troco: %d \n", trocokg);
             }
             break;
+        case 3:
+            system("cls");
+            printf("--------PRODUTOS--------\n");
+            printf("%s - VALOR: %d\n", item[0].nomeProd, item[0].valorProd);
+            printf("%s - VALOR: %d\n", item[1].nomeProd, item[1].valorProd);
+            printf("%s - VALOR: %d\n", item[2].nomeProd, item[2].valorProd);
+            printf("%s - VALOR: %d\n", item[3].nomeProd, item[3].valorProd);
+            printf("%s - VALOR: %d\n", item[4].nomeProd, item[4].valorProd);
+
+            printf("\n\n---PRODUTOS POR QUILO---\n");
+            printf("%s - VALOR: %d\n", itemkg[0].nomeProdkg, itemkg[0].valorProdkg);
+            printf("%s - VALOR: %d\n", itemkg[1].nomeProdkg, itemkg[1].valorProdkg);
+            printf("%s - VALOR: %d\n", itemkg[2].nomeProdkg, itemkg[2].valorProdkg);
+            printf("%s - VALOR: %d\n", itemkg[3].nomeProdkg, itemkg[3].valorProdkg);
+            printf("%s - VALOR: %d\n", itemkg[4].nomeProdkg, itemkg[4].valorProdkg);
+
+            /*printf("\nAPERTE [1] PARA RETORNAR AO MENU");
+            scanf_s("%d", &codigoRet);
+            if (codigoRet == 1){
+                statusMenu++;
+            }*/
+            break;
+        case 4:
+            system("cls");
+            printf("APERTE ENTER PARA ENCERRAR O PROGRAMA");
+            break;
         default:
             printf("APERTE ENTER PARA ENCERRAR O PROGRAMA\n\n");
         }
+    } while (statusMenu != 0);
 
     system("pause");
     return 0;
@@ -126,7 +177,6 @@ TAREFAS
 PONTO EXTRA: Conexão com o banco de dados MySQL.
 PONTO EXTRA: Criação de biblioteca.
 RF1. Função para que usuário adiciona mais de um produto no ato de venda.
-RF2. Uso de structs para os produtos
 RF3. Função para que o usuario gerente possa adicionar produtos
 RF4. Função para que o usuario possa transitar entre as telas (botão para voltar e sair)
 RF5. Função de cadastro para funcionários (registro em text ou mysql) 
