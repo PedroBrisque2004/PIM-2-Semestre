@@ -14,11 +14,31 @@ GRUPO : G870344 - ANDRÉ LUIZ PEREIRA DA COSTA
 #include <string.h>                             
 #include <locale.h>
 
+typedef struct {
+    char *nomeProd; //nome precisa ser indicado como ponteiro no visual studio mas pode ser alterado como strcpy em outras IDE's
+    int valorProd;
+}Produto;
+
 int main(void) {
     setlocale(LC_ALL, "Portuguese");
     char login[30], loginRegistrado[30] = "login";
     char senha[30], senhaRegistrada[30] = "senha";
     int status;
+
+    Produto item[10];
+
+    item[0].nomeProd = "LEITE";
+    item[0].valorProd = 5;
+    item[1].nomeProd = "OVOS";
+    item[1].valorProd = 15;
+    item[2].nomeProd = "FARDO DE CERVEJA";
+    item[2].valorProd = 50;
+    item[3].nomeProd = "SABÃO";
+    item[3].valorProd = 6;
+    item[4].nomeProd = "FARINHA";
+    item[4].valorProd = 10;
+
+    printf("%s/n%d/n", item[0].nomeProd, item[0].valorProd);
 
     do {
         system("cls");
