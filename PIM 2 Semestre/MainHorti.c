@@ -17,20 +17,31 @@ GRUPO : G870344 - ANDRÉ LUIZ PEREIRA DA COSTA
 int main(void) {
     setlocale(LC_ALL, "Portuguese");
     char login[30], loginRegistrado[30] = "login";
-    char senha[30], senhaRegistrado[30] = "senha";
+    char senha[30], senhaRegistrada[30] = "senha";
+    int status;
 
-    printf("------HORTIFRUTI------ \n");
-    printf("--------ENTRAR-------- \n\n");
+    do {
+        system("cls");
+        printf("------HORTIFRUTI------ \n");
+        printf("--------ENTRAR-------- \n\n");
+        status = 0;
+        printf("INSIRA O SEU LOGIN:");
+        fflush(stdin);
+        scanf_s("%s", login);
+        if (strcmp(loginRegistrado, login)!=0){
+            printf("LOGIN ERRADO!");
+            status++;
+        } else {
+            printf("INSIRA A SUA SENHA:");
+            fflush(stdin);
+            scanf_s("%s", senha);
+            if (strcmp(senhaRegistrada, senha)!=0) {
+                printf("SENHA ERRADA!");
+                status++;
+            }
+        }
+    } while (status != 0);
 
-    printf("Insira o seu login: \n");
-    scanf_s("%s", login);
-    fflush(stdin);
-
-    printf("Insira a sua senha: \n");
-    scanf_s("%s", senha);
-    fflush(stdin);
-
-    if (strcmp(login, loginRegistrado) == 0 && strcmp(senha, senhaRegistrado) == 0) {
         system("cls");
         int opcaoVenda;
         printf("Escolha a opção de venda: \n");
@@ -85,11 +96,6 @@ int main(void) {
         default:
             printf("APERTE ENTER PARA ENCERRAR O PROGRAMA\n\n");
         }
-    }
-    else {
-        system("cls");
-        printf("login não realizado\n");
-    }
 
     system("pause");
     return 0;
